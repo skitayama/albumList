@@ -26,6 +26,7 @@
 		CC3F0D541B37018900EBAEC0 /* AlbumThumbnailCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC3F0D4A1B37018900EBAEC0 /* AlbumThumbnailCollectionViewCell.xib */; };
 		CC3F0D551B37018900EBAEC0 /* AlbumThumbnailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC3F0D4B1B37018900EBAEC0 /* AlbumThumbnailView.storyboard */; };
 		CC3F0D561B37018900EBAEC0 /* AlbumThumbnailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC3F0D4D1B37018900EBAEC0 /* AlbumThumbnailViewController.m */; };
+		CC3F0D581B37033200EBAEC0 /* AlbumListView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC3F0D571B37033200EBAEC0 /* AlbumListView.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 		CC3F0D4B1B37018900EBAEC0 /* AlbumThumbnailView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AlbumThumbnailView.storyboard; sourceTree = "<group>"; };
 		CC3F0D4C1B37018900EBAEC0 /* AlbumThumbnailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumThumbnailViewController.h; sourceTree = "<group>"; };
 		CC3F0D4D1B37018900EBAEC0 /* AlbumThumbnailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumThumbnailViewController.m; sourceTree = "<group>"; };
+		CC3F0D571B37033200EBAEC0 /* AlbumListView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AlbumListView.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +185,7 @@
 				CC3F0D411B37018900EBAEC0 /* AlbumListTableViewCell.xib */,
 				CC3F0D3F1B37018900EBAEC0 /* AlbumListTableViewCell.h */,
 				CC3F0D401B37018900EBAEC0 /* AlbumListTableViewCell.m */,
+				CC3F0D571B37033200EBAEC0 /* AlbumListView.storyboard */,
 				CC3F0D421B37018900EBAEC0 /* AlbumListViewController.h */,
 				CC3F0D431B37018900EBAEC0 /* AlbumListViewController.m */,
 			);
@@ -293,6 +296,7 @@
 				CC3F0D541B37018900EBAEC0 /* AlbumThumbnailCollectionViewCell.xib in Resources */,
 				CC3F0CFE1B357FF300EBAEC0 /* Images.xcassets in Resources */,
 				CC3F0D4F1B37018900EBAEC0 /* AlbumListTableViewCell.xib in Resources */,
+				CC3F0D581B37033200EBAEC0 /* AlbumListView.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
