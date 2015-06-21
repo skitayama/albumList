@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <scenes>
+        <!--AlbumListViewController-->
+        <scene sceneID="6zE-9T-hIs">
+            <objects>
+                <viewController storyboardIdentifier="AlbumListView" id="T5h-O3-dba" userLabel="AlbumListViewController" customClass="AlbumListViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Rtu-Yw-qz7"/>
+                        <viewControllerLayoutGuide type="bottom" id="60E-GI-Ehr"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="nGQ-e1-8qp">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="62" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="uHS-Hz-YkM" userLabel="AlbumTableView">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="uHS-Hz-YkM" firstAttribute="leading" secondItem="nGQ-e1-8qp" secondAttribute="leading" id="UO0-vx-BlE"/>
+                            <constraint firstAttribute="trailing" secondItem="uHS-Hz-YkM" secondAttribute="trailing" id="YBc-pd-94V"/>
+                            <constraint firstItem="60E-GI-Ehr" firstAttribute="top" secondItem="uHS-Hz-YkM" secondAttribute="bottom" id="aaI-IA-Bqf"/>
+                            <constraint firstItem="uHS-Hz-YkM" firstAttribute="top" secondItem="nGQ-e1-8qp" secondAttribute="top" id="p6N-wt-Wh8"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="albumTableView" destination="uHS-Hz-YkM" id="iNG-hI-mUV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BWc-ZC-z4y" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="338" y="369"/>
+        </scene>
+    </scenes>
+</document>
