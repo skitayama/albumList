@@ -14,19 +14,18 @@
 		CC3F0CFE1B357FF300EBAEC0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC3F0CFD1B357FF300EBAEC0 /* Images.xcassets */; };
 		CC3F0D011B357FF300EBAEC0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC3F0CFF1B357FF300EBAEC0 /* LaunchScreen.xib */; };
 		CC3F0D0D1B357FF300EBAEC0 /* AlbumListTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CC3F0D0C1B357FF300EBAEC0 /* AlbumListTests.m */; };
-		CC3F0D191B35814800EBAEC0 /* AlbumListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC3F0D181B35814800EBAEC0 /* AlbumListViewController.m */; };
-		CC3F0D1B1B35818800EBAEC0 /* AlbumListView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC3F0D1A1B35818800EBAEC0 /* AlbumListView.storyboard */; };
 		CC3F0D1F1B35851900EBAEC0 /* AlbumManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CC3F0D1E1B35851900EBAEC0 /* AlbumManager.m */; };
-		CC3F0D231B358AD700EBAEC0 /* AlbumListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CC3F0D211B358AD700EBAEC0 /* AlbumListTableViewCell.m */; };
-		CC3F0D241B358AD700EBAEC0 /* AlbumListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC3F0D221B358AD700EBAEC0 /* AlbumListTableViewCell.xib */; };
 		CC3F0D271B35A04800EBAEC0 /* AssetCollectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CC3F0D261B35A04800EBAEC0 /* AssetCollectionModel.m */; };
-		CC3F0D2A1B35B2A500EBAEC0 /* AlbumThumbnailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC3F0D291B35B2A500EBAEC0 /* AlbumThumbnailViewController.m */; };
-		CC3F0D2C1B35B2D600EBAEC0 /* AlbumThumbnailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC3F0D2B1B35B2D600EBAEC0 /* AlbumThumbnailView.storyboard */; };
-		CC3F0D301B36AB4100EBAEC0 /* AlbumThumbnailCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CC3F0D2E1B36AB4100EBAEC0 /* AlbumThumbnailCollectionViewCell.m */; };
-		CC3F0D311B36AB4100EBAEC0 /* AlbumThumbnailCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC3F0D2F1B36AB4100EBAEC0 /* AlbumThumbnailCollectionViewCell.xib */; };
 		CC3F0D341B36BFC900EBAEC0 /* AssetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CC3F0D331B36BFC900EBAEC0 /* AssetModel.m */; };
-		CC3F0D391B36FA3300EBAEC0 /* AlbumGroupedThumbnailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC3F0D381B36FA3300EBAEC0 /* AlbumGroupedThumbnailViewController.m */; };
-		CC3F0D3B1B36FA5E00EBAEC0 /* AlbumGroupedThumbnailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC3F0D3A1B36FA5E00EBAEC0 /* AlbumGroupedThumbnailView.storyboard */; };
+		CC3F0D4E1B37018900EBAEC0 /* AlbumListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CC3F0D401B37018900EBAEC0 /* AlbumListTableViewCell.m */; };
+		CC3F0D4F1B37018900EBAEC0 /* AlbumListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC3F0D411B37018900EBAEC0 /* AlbumListTableViewCell.xib */; };
+		CC3F0D501B37018900EBAEC0 /* AlbumListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC3F0D431B37018900EBAEC0 /* AlbumListViewController.m */; };
+		CC3F0D511B37018900EBAEC0 /* AlbumGroupedThumbnailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC3F0D451B37018900EBAEC0 /* AlbumGroupedThumbnailView.storyboard */; };
+		CC3F0D521B37018900EBAEC0 /* AlbumGroupedThumbnailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC3F0D471B37018900EBAEC0 /* AlbumGroupedThumbnailViewController.m */; };
+		CC3F0D531B37018900EBAEC0 /* AlbumThumbnailCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CC3F0D491B37018900EBAEC0 /* AlbumThumbnailCollectionViewCell.m */; };
+		CC3F0D541B37018900EBAEC0 /* AlbumThumbnailCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC3F0D4A1B37018900EBAEC0 /* AlbumThumbnailCollectionViewCell.xib */; };
+		CC3F0D551B37018900EBAEC0 /* AlbumThumbnailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC3F0D4B1B37018900EBAEC0 /* AlbumThumbnailView.storyboard */; };
+		CC3F0D561B37018900EBAEC0 /* AlbumThumbnailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC3F0D4D1B37018900EBAEC0 /* AlbumThumbnailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,28 +52,27 @@
 		CC3F0D061B357FF300EBAEC0 /* AlbumListTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AlbumListTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC3F0D0B1B357FF300EBAEC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CC3F0D0C1B357FF300EBAEC0 /* AlbumListTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlbumListTests.m; sourceTree = "<group>"; };
-		CC3F0D171B35814800EBAEC0 /* AlbumListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlbumListViewController.h; path = Album/AlbumListViewController.h; sourceTree = "<group>"; };
-		CC3F0D181B35814800EBAEC0 /* AlbumListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AlbumListViewController.m; path = Album/AlbumListViewController.m; sourceTree = "<group>"; };
-		CC3F0D1A1B35818800EBAEC0 /* AlbumListView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AlbumListView.storyboard; sourceTree = "<group>"; };
 		CC3F0D1D1B35851900EBAEC0 /* AlbumManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlbumManager.h; path = Manager/AlbumManager.h; sourceTree = "<group>"; };
 		CC3F0D1E1B35851900EBAEC0 /* AlbumManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AlbumManager.m; path = Manager/AlbumManager.m; sourceTree = "<group>"; };
-		CC3F0D201B358AD700EBAEC0 /* AlbumListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumListTableViewCell.h; sourceTree = "<group>"; };
-		CC3F0D211B358AD700EBAEC0 /* AlbumListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumListTableViewCell.m; sourceTree = "<group>"; };
-		CC3F0D221B358AD700EBAEC0 /* AlbumListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlbumListTableViewCell.xib; sourceTree = "<group>"; };
 		CC3F0D251B35A04800EBAEC0 /* AssetCollectionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AssetCollectionModel.h; path = Manager/AssetCollectionModel.h; sourceTree = "<group>"; };
 		CC3F0D261B35A04800EBAEC0 /* AssetCollectionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AssetCollectionModel.m; path = Manager/AssetCollectionModel.m; sourceTree = "<group>"; };
-		CC3F0D281B35B2A500EBAEC0 /* AlbumThumbnailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlbumThumbnailViewController.h; path = Album/AlbumThumbnailViewController.h; sourceTree = "<group>"; };
-		CC3F0D291B35B2A500EBAEC0 /* AlbumThumbnailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AlbumThumbnailViewController.m; path = Album/AlbumThumbnailViewController.m; sourceTree = "<group>"; };
-		CC3F0D2B1B35B2D600EBAEC0 /* AlbumThumbnailView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = AlbumThumbnailView.storyboard; path = Album/AlbumThumbnailView.storyboard; sourceTree = "<group>"; };
-		CC3F0D2D1B36AB4100EBAEC0 /* AlbumThumbnailCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlbumThumbnailCollectionViewCell.h; path = Album/AlbumThumbnailCollectionViewCell.h; sourceTree = "<group>"; };
-		CC3F0D2E1B36AB4100EBAEC0 /* AlbumThumbnailCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AlbumThumbnailCollectionViewCell.m; path = Album/AlbumThumbnailCollectionViewCell.m; sourceTree = "<group>"; };
-		CC3F0D2F1B36AB4100EBAEC0 /* AlbumThumbnailCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AlbumThumbnailCollectionViewCell.xib; path = Album/AlbumThumbnailCollectionViewCell.xib; sourceTree = "<group>"; };
 		CC3F0D321B36BFC900EBAEC0 /* AssetModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AssetModel.h; path = Manager/AssetModel.h; sourceTree = "<group>"; };
 		CC3F0D331B36BFC900EBAEC0 /* AssetModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AssetModel.m; path = Manager/AssetModel.m; sourceTree = "<group>"; };
 		CC3F0D361B36C70D00EBAEC0 /* SCAlbumThumbnailMode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SCAlbumThumbnailMode.h; path = SCApp/SCAlbumThumbnailMode.h; sourceTree = "<group>"; };
-		CC3F0D371B36FA3300EBAEC0 /* AlbumGroupedThumbnailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlbumGroupedThumbnailViewController.h; path = Album/AlbumGroupedThumbnailViewController.h; sourceTree = "<group>"; };
-		CC3F0D381B36FA3300EBAEC0 /* AlbumGroupedThumbnailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AlbumGroupedThumbnailViewController.m; path = Album/AlbumGroupedThumbnailViewController.m; sourceTree = "<group>"; };
-		CC3F0D3A1B36FA5E00EBAEC0 /* AlbumGroupedThumbnailView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = AlbumGroupedThumbnailView.storyboard; path = Album/AlbumGroupedThumbnailView.storyboard; sourceTree = "<group>"; };
+		CC3F0D3F1B37018900EBAEC0 /* AlbumListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumListTableViewCell.h; sourceTree = "<group>"; };
+		CC3F0D401B37018900EBAEC0 /* AlbumListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumListTableViewCell.m; sourceTree = "<group>"; };
+		CC3F0D411B37018900EBAEC0 /* AlbumListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlbumListTableViewCell.xib; sourceTree = "<group>"; };
+		CC3F0D421B37018900EBAEC0 /* AlbumListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumListViewController.h; sourceTree = "<group>"; };
+		CC3F0D431B37018900EBAEC0 /* AlbumListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumListViewController.m; sourceTree = "<group>"; };
+		CC3F0D451B37018900EBAEC0 /* AlbumGroupedThumbnailView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AlbumGroupedThumbnailView.storyboard; sourceTree = "<group>"; };
+		CC3F0D461B37018900EBAEC0 /* AlbumGroupedThumbnailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumGroupedThumbnailViewController.h; sourceTree = "<group>"; };
+		CC3F0D471B37018900EBAEC0 /* AlbumGroupedThumbnailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumGroupedThumbnailViewController.m; sourceTree = "<group>"; };
+		CC3F0D481B37018900EBAEC0 /* AlbumThumbnailCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumThumbnailCollectionViewCell.h; sourceTree = "<group>"; };
+		CC3F0D491B37018900EBAEC0 /* AlbumThumbnailCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumThumbnailCollectionViewCell.m; sourceTree = "<group>"; };
+		CC3F0D4A1B37018900EBAEC0 /* AlbumThumbnailCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlbumThumbnailCollectionViewCell.xib; sourceTree = "<group>"; };
+		CC3F0D4B1B37018900EBAEC0 /* AlbumThumbnailView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AlbumThumbnailView.storyboard; sourceTree = "<group>"; };
+		CC3F0D4C1B37018900EBAEC0 /* AlbumThumbnailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumThumbnailViewController.h; sourceTree = "<group>"; };
+		CC3F0D4D1B37018900EBAEC0 /* AlbumThumbnailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumThumbnailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,7 +116,7 @@
 			children = (
 				CC3F0D351B36C6CE00EBAEC0 /* SCApp */,
 				CC3F0D1C1B3584EE00EBAEC0 /* Manager */,
-				CC3F0D161B35811300EBAEC0 /* Album */,
+				CC3F0D3E1B37018900EBAEC0 /* Album */,
 				CC3F0CF41B357FF300EBAEC0 /* AppDelegate.h */,
 				CC3F0CF51B357FF300EBAEC0 /* AppDelegate.m */,
 				CC3F0CF71B357FF300EBAEC0 /* ViewController.h */,
@@ -157,28 +155,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		CC3F0D161B35811300EBAEC0 /* Album */ = {
-			isa = PBXGroup;
-			children = (
-				CC3F0D171B35814800EBAEC0 /* AlbumListViewController.h */,
-				CC3F0D181B35814800EBAEC0 /* AlbumListViewController.m */,
-				CC3F0D1A1B35818800EBAEC0 /* AlbumListView.storyboard */,
-				CC3F0D201B358AD700EBAEC0 /* AlbumListTableViewCell.h */,
-				CC3F0D211B358AD700EBAEC0 /* AlbumListTableViewCell.m */,
-				CC3F0D221B358AD700EBAEC0 /* AlbumListTableViewCell.xib */,
-				CC3F0D281B35B2A500EBAEC0 /* AlbumThumbnailViewController.h */,
-				CC3F0D291B35B2A500EBAEC0 /* AlbumThumbnailViewController.m */,
-				CC3F0D2B1B35B2D600EBAEC0 /* AlbumThumbnailView.storyboard */,
-				CC3F0D2D1B36AB4100EBAEC0 /* AlbumThumbnailCollectionViewCell.h */,
-				CC3F0D2E1B36AB4100EBAEC0 /* AlbumThumbnailCollectionViewCell.m */,
-				CC3F0D2F1B36AB4100EBAEC0 /* AlbumThumbnailCollectionViewCell.xib */,
-				CC3F0D371B36FA3300EBAEC0 /* AlbumGroupedThumbnailViewController.h */,
-				CC3F0D381B36FA3300EBAEC0 /* AlbumGroupedThumbnailViewController.m */,
-				CC3F0D3A1B36FA5E00EBAEC0 /* AlbumGroupedThumbnailView.storyboard */,
-			);
-			name = Album;
-			sourceTree = "<group>";
-		};
 		CC3F0D1C1B3584EE00EBAEC0 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
@@ -198,6 +174,35 @@
 				CC3F0D361B36C70D00EBAEC0 /* SCAlbumThumbnailMode.h */,
 			);
 			name = SCApp;
+			sourceTree = "<group>";
+		};
+		CC3F0D3E1B37018900EBAEC0 /* Album */ = {
+			isa = PBXGroup;
+			children = (
+				CC3F0D441B37018900EBAEC0 /* Thumbnail */,
+				CC3F0D411B37018900EBAEC0 /* AlbumListTableViewCell.xib */,
+				CC3F0D3F1B37018900EBAEC0 /* AlbumListTableViewCell.h */,
+				CC3F0D401B37018900EBAEC0 /* AlbumListTableViewCell.m */,
+				CC3F0D421B37018900EBAEC0 /* AlbumListViewController.h */,
+				CC3F0D431B37018900EBAEC0 /* AlbumListViewController.m */,
+			);
+			path = Album;
+			sourceTree = "<group>";
+		};
+		CC3F0D441B37018900EBAEC0 /* Thumbnail */ = {
+			isa = PBXGroup;
+			children = (
+				CC3F0D451B37018900EBAEC0 /* AlbumGroupedThumbnailView.storyboard */,
+				CC3F0D461B37018900EBAEC0 /* AlbumGroupedThumbnailViewController.h */,
+				CC3F0D471B37018900EBAEC0 /* AlbumGroupedThumbnailViewController.m */,
+				CC3F0D4A1B37018900EBAEC0 /* AlbumThumbnailCollectionViewCell.xib */,
+				CC3F0D481B37018900EBAEC0 /* AlbumThumbnailCollectionViewCell.h */,
+				CC3F0D491B37018900EBAEC0 /* AlbumThumbnailCollectionViewCell.m */,
+				CC3F0D4B1B37018900EBAEC0 /* AlbumThumbnailView.storyboard */,
+				CC3F0D4C1B37018900EBAEC0 /* AlbumThumbnailViewController.h */,
+				CC3F0D4D1B37018900EBAEC0 /* AlbumThumbnailViewController.m */,
+			);
+			path = Thumbnail;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -281,14 +286,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CC3F0D2C1B35B2D600EBAEC0 /* AlbumThumbnailView.storyboard in Resources */,
-				CC3F0D3B1B36FA5E00EBAEC0 /* AlbumGroupedThumbnailView.storyboard in Resources */,
+				CC3F0D551B37018900EBAEC0 /* AlbumThumbnailView.storyboard in Resources */,
 				CC3F0CFC1B357FF300EBAEC0 /* Main.storyboard in Resources */,
-				CC3F0D241B358AD700EBAEC0 /* AlbumListTableViewCell.xib in Resources */,
 				CC3F0D011B357FF300EBAEC0 /* LaunchScreen.xib in Resources */,
+				CC3F0D511B37018900EBAEC0 /* AlbumGroupedThumbnailView.storyboard in Resources */,
+				CC3F0D541B37018900EBAEC0 /* AlbumThumbnailCollectionViewCell.xib in Resources */,
 				CC3F0CFE1B357FF300EBAEC0 /* Images.xcassets in Resources */,
-				CC3F0D1B1B35818800EBAEC0 /* AlbumListView.storyboard in Resources */,
-				CC3F0D311B36AB4100EBAEC0 /* AlbumThumbnailCollectionViewCell.xib in Resources */,
+				CC3F0D4F1B37018900EBAEC0 /* AlbumListTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,15 +310,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CC3F0D191B35814800EBAEC0 /* AlbumListViewController.m in Sources */,
-				CC3F0D231B358AD700EBAEC0 /* AlbumListTableViewCell.m in Sources */,
+				CC3F0D501B37018900EBAEC0 /* AlbumListViewController.m in Sources */,
+				CC3F0D531B37018900EBAEC0 /* AlbumThumbnailCollectionViewCell.m in Sources */,
 				CC3F0CF91B357FF300EBAEC0 /* ViewController.m in Sources */,
 				CC3F0CF61B357FF300EBAEC0 /* AppDelegate.m in Sources */,
-				CC3F0D301B36AB4100EBAEC0 /* AlbumThumbnailCollectionViewCell.m in Sources */,
+				CC3F0D521B37018900EBAEC0 /* AlbumGroupedThumbnailViewController.m in Sources */,
+				CC3F0D4E1B37018900EBAEC0 /* AlbumListTableViewCell.m in Sources */,
+				CC3F0D561B37018900EBAEC0 /* AlbumThumbnailViewController.m in Sources */,
 				CC3F0CF31B357FF300EBAEC0 /* main.m in Sources */,
 				CC3F0D341B36BFC900EBAEC0 /* AssetModel.m in Sources */,
-				CC3F0D2A1B35B2A500EBAEC0 /* AlbumThumbnailViewController.m in Sources */,
-				CC3F0D391B36FA3300EBAEC0 /* AlbumGroupedThumbnailViewController.m in Sources */,
 				CC3F0D271B35A04800EBAEC0 /* AssetCollectionModel.m in Sources */,
 				CC3F0D1F1B35851900EBAEC0 /* AlbumManager.m in Sources */,
 			);
