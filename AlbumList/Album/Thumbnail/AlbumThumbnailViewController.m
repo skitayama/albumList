@@ -8,6 +8,7 @@
 @interface AlbumThumbnailViewController ()
 
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
+@property (nonatomic, weak) IBOutlet UIToolbar *albumToolBar;
 @property AlbumManager *albumManager;
 
 @end
@@ -23,13 +24,13 @@ static NSString * const ThumbnailCellIdentifier = @"AlbumThumbnailCollectionView
     [super viewDidLoad];
     // self init
     [self initView];
-    [self settingAlbumManager];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
 
     [super viewWillAppear:animated];
-    [self.collectionView reloadData];
+    [self reloadCollectionView];
+    [self settingAlbumManager];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -59,6 +60,7 @@ static NSString * const ThumbnailCellIdentifier = @"AlbumThumbnailCollectionView
     
     [self initCollectionView];
     [self setupNavigationItem];
+    [self setupAlbumToolBar];
 }
 
 - (void)settingAlbumManager {
@@ -67,7 +69,7 @@ static NSString * const ThumbnailCellIdentifier = @"AlbumThumbnailCollectionView
         self.albumManager = [AlbumManager sharedInstance];
         self.albumManager.delegate = self;
         // nilは全イメージ取得モード
-        [self.albumManager loadThumbnailListWithAssetCollectionModel:nil];
+        [self.albumManager loadThumbnailListWithAssetCollectionModel:_selectedModel];
     }
 }
 
@@ -79,6 +81,15 @@ static NSString * const ThumbnailCellIdentifier = @"AlbumThumbnailCollectionView
                                               action:@selector(onDoneButton)];
 }
 
+- (void)setupAlbumToolBar {
+
+    UIBarButtonItem *allSelectButton = [[UIBarButtonItem alloc] initWithTitle:@"全選択"
+                                                                        style:UIBarButtonItemStylePlain
+                                                                       target:self
+                                                                       action:@selector(onAllSelectButton)];
+    [self.albumToolBar setItems:[NSArray arrayWithObjects:allSelectButton, nil]];
+}
+
 - (void)initData {
     
     // init Data
@@ -86,11 +97,34 @@ static NSString * const ThumbnailCellIdentifier = @"AlbumThumbnailCollectionView
 
 - (void)initCollectionView {
 
-    // initCollectionView
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
     UINib *nib = [UINib nibWithNibName:ThumbnailCellIdentifier bundle:nil];
     [self.collectionView registerNib:nib forCellWithReuseIdentifier:ThumbnailCellIdentifier];
+}
+
+#pragma mark - Handling NavigationBar Buttons
+
+- (void)setEnableDoneButton {
+
+    BOOL enable = YES;
+    if ([self.albumManager.selectedThumbnailList count] == 0) {
+        enable = NO;
+    }
+    [self.navigationItem.rightBarButtonItem setEnabled:enable];
+}
+
+- (void)setEnableAllSelectButton {
+    
+    BOOL enable = YES;
+    if ([self.albumManager.selectedThumbnailList count] == [self.albumManager.thumbnailList count]) {
+        enable = NO;
+    }
+
+    // 今はツールバーに1個しかないので、一括でDisableにする。
+    for(UIBarButtonItem *button in [self.albumToolBar items]) {
+        [button setEnabled:enable];
+    }
 }
 
 #pragma mark - action
@@ -100,6 +134,23 @@ static NSString * const ThumbnailCellIdentifier = @"AlbumThumbnailCollectionView
     UIStoryboard *thumbnailSB = [UIStoryboard storyboardWithName:@"AlbumGroupedThumbnailView" bundle:[NSBundle mainBundle]];
     UIViewController *thumbnailVC = [thumbnailSB instantiateViewControllerWithIdentifier:@"AlbumGroupedThumbnailView"];
     [self.navigationController pushViewController:thumbnailVC animated:YES];
+}
+
+- (void)onAllSelectButton {
+
+    for (AssetModel *model in self.albumManager.thumbnailList) {
+        model.selected = YES;
+    }
+    [self reloadCollectionView];
+}
+
+#pragma mark - UICollectionView Reload
+
+- (void)reloadCollectionView {
+
+    [self.collectionView reloadData];
+    [self setEnableDoneButton];
+    [self setEnableAllSelectButton];
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -112,8 +163,12 @@ static NSString * const ThumbnailCellIdentifier = @"AlbumThumbnailCollectionView
 
 // セクション内セル数
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    
-    return [self.albumManager.thumbnailList count];
+
+    NSInteger count = 0;
+    if (self.albumManager) {
+        count = [self.albumManager.thumbnailList count];
+    }
+    return count;
 }
 
 // セル
@@ -134,13 +189,13 @@ static NSString * const ThumbnailCellIdentifier = @"AlbumThumbnailCollectionView
     model.selected = !model.selected;
     AlbumThumbnailCollectionViewCell *cell = (AlbumThumbnailCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
     [cell setSelectedImage:model.selected];
-    [self.collectionView reloadData];
+    [self reloadCollectionView];
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
 
     // セルサイズを正方形x4に変更
-    float size = self.collectionView.frame.size.width/4;
+    float size = (self.collectionView.frame.size.width/4.0f) - 2.0f;
     return CGSizeMake(size, size);
 }
 
@@ -149,13 +204,13 @@ static NSString * const ThumbnailCellIdentifier = @"AlbumThumbnailCollectionView
 // 更新通知
 - (void)photoLibraryDidChange {
 
-    [self.collectionView reloadData];
+    [self reloadCollectionView];
 }
 
 // ロード完了通知
-- (void)didFinishLoading {
+- (void)didFinishLoadingThumbnailList {
 
-    [self.collectionView reloadData];
+    [self reloadCollectionView];
 }
 
 @end

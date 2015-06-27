@@ -48,6 +48,15 @@ static AlbumManager *_instance;
     return self;
 }
 
++ (id)allocWithZone:(NSZone *)zone {
+    @synchronized(self) {
+        if (!_instance) {
+            _instance = [super allocWithZone:zone];
+        }
+    }
+    return _instance;
+}
+
 - (void)initData {
 
     self.albumList = [NSMutableArray array];
@@ -58,27 +67,30 @@ static AlbumManager *_instance;
 
 - (void)loadAlbums {
 
-    self.albumList = [NSMutableArray array];
+    dispatch_async(dispatch_get_main_queue(),^{
+        self.albumList = [NSMutableArray array];
 
-    // カメラロール
-    PHFetchOptions *options = [PHFetchOptions new];
-    options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
-    PHFetchResult *cameraRoll = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum
-                                                                     subtype:PHAssetCollectionSubtypeSmartAlbumUserLibrary
-                                                                     options:nil];
+        // カメラロール
+        PHFetchOptions *options = [PHFetchOptions new];
+        options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
+        PHFetchResult *cameraRoll = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum
+                                                                         subtype:PHAssetCollectionSubtypeSmartAlbumUserLibrary
+                                                                         options:nil];
 
-    AssetCollectionModel *model = [self addAssetCollectionModelObjectWithPHAssetCollection:(PHAssetCollection *)cameraRoll.firstObject];
-    [self.albumList addObject:model];
+        AssetCollectionModel *model = [self addAssetCollectionModelObjectWithPHAssetCollection:(PHAssetCollection *)cameraRoll.firstObject];
+        [self.albumList addObject:model];
 
-    // ユーザーアルバム
-    PHFetchResult *userAlbums = [PHCollection fetchTopLevelUserCollectionsWithOptions:nil];
-    for (PHAssetCollection *assetCollection in userAlbums) {
-        [self addAssetCollectionModelObjectWithPHAssetCollection:(PHAssetCollection *)assetCollection];
-    }
-    // 更新通知
-    if ([self.delegate respondsToSelector:@selector(didFinishLoading)]) {
-        [self.delegate didFinishLoading];
-    }
+        // ユーザーアルバム
+        PHFetchResult *userAlbums = [PHCollection fetchTopLevelUserCollectionsWithOptions:nil];
+        for (PHAssetCollection *assetCollection in userAlbums) {
+            AssetCollectionModel *model = [self addAssetCollectionModelObjectWithPHAssetCollection:(PHAssetCollection *)assetCollection];
+            [self.albumList addObject:model];
+        }
+        // 更新通知
+        if ([self.delegate respondsToSelector:@selector(didFinishLoadingAlbumList)]) {
+            [self.delegate didFinishLoadingAlbumList];
+        }
+    });
 }
 
 - (AssetCollectionModel *)addAssetCollectionModelObjectWithPHAssetCollection:(PHAssetCollection *)assetCollection {
@@ -94,27 +106,29 @@ static AlbumManager *_instance;
 
 - (void)loadThumbnailListWithAssetCollectionModel:(AssetCollectionModel *)model {
 
-    self.thumbnailList = [NSMutableArray array];
+    dispatch_async(dispatch_get_main_queue(),^{
+        self.thumbnailList = [NSMutableArray array];
 
-    PHFetchOptions *options = [PHFetchOptions new];
-    options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
-    PHFetchResult *assets;
-    if (!model) {
-        // 全ての画像取得
-        assets = [PHAsset fetchAssetsWithMediaType:PHAssetMediaTypeImage options:options];
-    } else {
-        // アルバムを戻るから判定してロード
-        assets = [PHAsset fetchAssetsInAssetCollection:model.assetCollection options:options];
-    }
-    for(id fetchResult in assets) {
-        PHAsset *asset = (PHAsset *)fetchResult;
-        AssetModel *model = [self addAssetModelObjectWithPHAssetCollection:asset];
-        [self.thumbnailList addObject:model];
-    }
-    // 更新通知
-    if ([self.delegate respondsToSelector:@selector(didFinishLoading)]) {
-        [self.delegate didFinishLoading];
-    }
+        PHFetchOptions *options = [PHFetchOptions new];
+        options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
+        PHFetchResult *assets;
+        if (!model) {
+            // 全ての画像取得
+            assets = [PHAsset fetchAssetsWithMediaType:PHAssetMediaTypeImage options:options];
+        } else {
+            // アルバムを戻るから判定してロード
+            assets = [PHAsset fetchAssetsInAssetCollection:model.assetCollection options:options];
+        }
+        for(id fetchResult in assets) {
+            PHAsset *asset = (PHAsset *)fetchResult;
+            AssetModel *model = [self addAssetModelObjectWithPHAssetCollection:asset];
+            [self.thumbnailList addObject:model];
+        }
+        // 更新通知
+        if ([self.delegate respondsToSelector:@selector(didFinishLoadingThumbnailList)]) {
+            [self.delegate didFinishLoadingThumbnailList];
+        }
+    });
 }
 
 - (AssetModel *)addAssetModelObjectWithPHAssetCollection:(PHAsset *)asset {
@@ -162,8 +176,7 @@ static AlbumManager *_instance;
 
 #pragma mark - PHPhotoLibraryChangeObserver
 
-- (void)photoLibraryDidChange:(PHChange *)changeInstance
-{
+- (void)photoLibraryDidChange:(PHChange *)changeInstance {
     dispatch_async(dispatch_get_main_queue(), ^{
         [self loadAlbums];
         if ([self.delegate respondsToSelector:@selector(photoLibraryDidChange)]) {
@@ -172,4 +185,15 @@ static AlbumManager *_instance;
     });
 }
 
+#pragma mark - Privacy Setting
+
++ (BOOL)isPhotoLibraryAccessNotDetermined {
+
+    PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus];
+    
+    if (status == PHAuthorizationStatusNotDetermined) {
+        return YES;
+    }
+    return NO;
+}
 @end

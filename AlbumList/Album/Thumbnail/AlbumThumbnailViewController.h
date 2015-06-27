@@ -7,4 +7,6 @@
 
 @interface AlbumThumbnailViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout, AlbumManagerDelegate>
 
+@property AssetCollectionModel *selectedModel;
+
 @end

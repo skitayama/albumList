@@ -7,16 +7,16 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AlbumThumbnailCollectionViewCell" id="gTV-IL-0wX" customClass="AlbumThumbnailCollectionViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="74" height="74"/>
+            <rect key="frame" x="0.0" y="0.0" width="72" height="72"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="74" height="74"/>
+                <rect key="frame" x="0.0" y="0.0" width="72" height="72"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="c9Q-fL-Y5x" userLabel="ThumbnailImageView">
-                        <rect key="frame" x="0.0" y="0.0" width="74" height="74"/>
+                        <rect key="frame" x="0.0" y="0.0" width="72" height="72"/>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Qcr-O4-vjN" userLabel="SelectedImageView">
-                        <rect key="frame" x="45" y="45" width="29" height="29"/>
+                        <rect key="frame" x="43" y="43" width="29" height="29"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="29" id="FvE-8H-Rtx"/>
                             <constraint firstAttribute="height" constant="29" id="xHx-hc-60b"/>

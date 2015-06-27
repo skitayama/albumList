@@ -12,7 +12,9 @@
 
 - (void)photoLibraryDidChange;
 
-- (void)didFinishLoading;
+@optional
+- (void)didFinishLoadingAlbumList;
+- (void)didFinishLoadingThumbnailList;
 
 @end
 
@@ -21,7 +23,7 @@
 @property (nonatomic, weak) id<AlbumManagerDelegate> delegate;
 @property (nonatomic, strong) NSMutableArray *albumList;
 @property (nonatomic, strong) NSMutableArray *thumbnailList;
-@property (nonatomic)NSMutableArray *selectedThumbnailList;
+@property (nonatomic) NSMutableArray *selectedThumbnailList;
 
 #pragma mark - Singleton Implementation
 + (AlbumManager *)sharedInstance;
@@ -31,4 +33,6 @@
 - (void)loadAlbums;
 - (void)loadThumbnailListWithAssetCollectionModel:(AssetCollectionModel *)model;
 
+#pragma mark - Privacy Setting
++ (BOOL)isPhotoLibraryAccessNotDetermined;  // 未選択か
 @end

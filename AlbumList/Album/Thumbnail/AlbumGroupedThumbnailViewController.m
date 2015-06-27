@@ -91,8 +91,12 @@ static NSString * const GroupedThumbnailCellIdentifier = @"AlbumThumbnailCollect
 
 // セクション内セル数
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    
-    return [self.albumManager.selectedThumbnailList count];
+
+    NSInteger count = 0;
+    if (self.albumManager) {
+        count = [self.albumManager.selectedThumbnailList count];
+    }
+    return count;
 }
 
 // セル
@@ -112,6 +116,7 @@ static NSString * const GroupedThumbnailCellIdentifier = @"AlbumThumbnailCollect
     model.selected = !model.selected;
     AlbumThumbnailCollectionViewCell *cell = (AlbumThumbnailCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
     [cell setSelectedImage:model.selected];
+    
     [self.collectionView reloadData];
 }
 

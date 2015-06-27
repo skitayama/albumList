@@ -4,14 +4,14 @@
 
 #import "AlbumListViewController.h"
 #import "AlbumListTableViewCell.h"
+#import "AlbumThumbnailViewController.h"
 
-static NSString * const AlbumListTableViewCellIdentifier = @"AlbumListTableViewCell";
+static NSString * const AlbumListTableViewCellIdentifier = @"AlbumListTableViewCellIdentifier";
 
 @interface AlbumListViewController ()
 
 @property (nonatomic, weak) IBOutlet UITableView *albumTableView;
 @property AlbumManager *albumManager;
-
 
 // for debug
 @property (nonatomic, strong) NSArray *debugDataSource;
@@ -28,12 +28,14 @@ static NSString * const AlbumListTableViewCellIdentifier = @"AlbumListTableViewC
 
     // self init
     [self initView];
-    [self settingAlbumManager];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
 
     [super viewWillAppear:animated];
+
+    // プライバシー設定をチェック
+    [self checkPrivacySettingStatus];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -81,12 +83,10 @@ static NSString * const AlbumListTableViewCellIdentifier = @"AlbumListTableViewC
 
     self.albumTableView.delegate = self;
     self.albumTableView.dataSource = self;
-    
-    // for debug
-    self.debugDataSource = @[@"iPhone 4", @"iPhone 4S", @"iPhone 5", @"iPhone 5c", @"iPhone 5s"];
+    self.albumTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 
-    UINib *nib = [UINib nibWithNibName:AlbumListTableViewCellIdentifier bundle:nil];
-    [self.albumTableView registerNib:nib forCellReuseIdentifier:@"Cell"];
+    UINib *nib = [UINib nibWithNibName:@"AlbumListTableViewCell" bundle:nil];
+    [self.albumTableView registerNib:nib forCellReuseIdentifier:AlbumListTableViewCellIdentifier];
 }
 
 #pragma mark - UITableViewDataSource
@@ -94,24 +94,27 @@ static NSString * const AlbumListTableViewCellIdentifier = @"AlbumListTableViewC
 // セクション数
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
-    // TimeLine未考慮
     return 1;
 }
 
 // セクションに含むセル数
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return [self.albumManager.albumList count];
+    NSInteger count = 0;
+    if (self.albumManager) {
+        count = [self.albumManager.albumList count];
+    }
+    return count;
 }
 
 // セル
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    static NSString *CellIdentifier = @"Cell";
-    AlbumListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-
-    AssetCollectionModel *model = [self.albumManager.albumList objectAtIndex:indexPath.row];
-    [cell setAssetCollectionModel:model];
+    AlbumListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:AlbumListTableViewCellIdentifier];
+    if (self.albumManager) {
+        AssetCollectionModel *model = [self.albumManager.albumList objectAtIndex:indexPath.row];
+        [cell setAssetCollectionModel:model];
+    }
     return cell;
 }
 
@@ -119,7 +122,13 @@ static NSString * const AlbumListTableViewCellIdentifier = @"AlbumListTableViewC
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    NSLog(@"select : %lu",indexPath.row);
+    if (self.albumManager) {
+        AssetCollectionModel *model = [self.albumManager.albumList objectAtIndex:indexPath.row];
+        UIStoryboard *thumbnailSB = [UIStoryboard storyboardWithName:@"AlbumThumbnailView" bundle:[NSBundle mainBundle]];
+        AlbumThumbnailViewController *thumbnailVC = [thumbnailSB instantiateViewControllerWithIdentifier:@"AlbumThumbnailView"];
+        thumbnailVC.selectedModel = model;
+        [self.navigationController pushViewController:thumbnailVC animated:YES];
+    }
 }
 
 #pragma mark - AlbumManagerDelegate
@@ -131,13 +140,77 @@ static NSString * const AlbumListTableViewCellIdentifier = @"AlbumListTableViewC
 }
 
 // ロード完了通知
-- (void)didFinishLoading {
+- (void)didFinishLoadingAlbumList {
 
     [self.albumTableView reloadData];
 }
 
+#pragma mark - Privacy Setting
 
+- (void)checkPrivacySettingStatus {
 
+    if ([AlbumManager isPhotoLibraryAccessNotDetermined]) {
+        // 初回に許可を促すメッセージ
+        [self showAlertPhotoAccessNotDetermined];
+    } else {
+        // 初回でなければ拒否チェック
+        [self checkAuthorizationStatus];
+    }
+}
 
+- (void)checkAuthorizationStatus {
+
+    [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status){
+        switch (status) {
+            case PHAuthorizationStatusAuthorized:       // 許可
+                [self settingAlbumManager];
+                break;
+            case PHAuthorizationStatusDenied:           // 拒否
+                [self showAlertPhotoAccessDenied];
+                break;
+            case PHAuthorizationStatusRestricted:       // 機能制限
+                [self showAlertPhotoAccessRestricted];
+                break;
+            default:
+                break;
+        }
+    }];
+}
+
+- (void)showAlertPhotoAccessNotDetermined {
+
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"PhotoLibraryAccessNotDeterminedTitle"
+                                                                   message:@"PhotoLibraryAccessNotDeterminedMsg"
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"OK"
+                                              style:UIAlertActionStyleDefault
+                                            handler:^(UIAlertAction *action) {
+                                                [self checkAuthorizationStatus];
+                                            }]];
+}
+
+- (void)showAlertPhotoAccessDenied {
+
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"PhotoLibraryAccessDeniedTitle"
+                                                                   message:@"PhotoLibraryAccessDeniedMsg"
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"openSetting"
+                                              style:UIAlertActionStyleDefault
+                                            handler:^(UIAlertAction *action) {
+                                                  [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+                                            }]];
+}
+
+- (void)showAlertPhotoAccessRestricted {
+
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"PhotoLibraryAccessRestrictedTitle"
+                                                                   message:@"PhotoLibraryAccessRestrictedMsg"
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"openSetting"
+                                              style:UIAlertActionStyleDefault
+                                            handler:^(UIAlertAction *action) {
+                                                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+                                            }]];
+}
 
 @end
