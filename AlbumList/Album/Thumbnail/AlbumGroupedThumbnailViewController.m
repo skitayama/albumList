@@ -4,6 +4,7 @@
 
 #import "AlbumGroupedThumbnailViewController.h"
 #import "AlbumThumbnailCollectionViewCell.h"
+#import "AlbumPreviewViewController.h"
 
 @interface AlbumGroupedThumbnailViewController ()
 
@@ -103,6 +104,7 @@ static NSString * const GroupedThumbnailCellIdentifier = @"AlbumThumbnailCollect
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     AlbumThumbnailCollectionViewCell *cell =[collectionView dequeueReusableCellWithReuseIdentifier:GroupedThumbnailCellIdentifier forIndexPath:indexPath];
+    cell.delegate = self;
     AssetModel *model = [self.albumManager.selectedThumbnailList objectAtIndex:indexPath.row];
     [cell setAssetModel:model];
     return cell;
@@ -112,12 +114,7 @@ static NSString * const GroupedThumbnailCellIdentifier = @"AlbumThumbnailCollect
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    AssetModel *model = [self.albumManager.selectedThumbnailList objectAtIndex:indexPath.row];
-    model.selected = !model.selected;
-    AlbumThumbnailCollectionViewCell *cell = (AlbumThumbnailCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    [cell setSelectedImage:model.selected];
-    
-    [self.collectionView reloadData];
+    //
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -125,6 +122,21 @@ static NSString * const GroupedThumbnailCellIdentifier = @"AlbumThumbnailCollect
     // セルサイズを正方形x4に変更
     float size = self.collectionView.frame.size.width/4;
     return CGSizeMake(size, size);
+}
+
+#pragma mark - AlbumThumbnailCollectionViewCellDelegate
+
+- (void)didTapThumbnailImage:(AssetModel *)model {
+
+    UIStoryboard *previewSB = [UIStoryboard storyboardWithName:@"AlbumPreviewView" bundle:[NSBundle mainBundle]];
+    AlbumPreviewViewController *previewVC = [previewSB instantiateViewControllerWithIdentifier:@"AlbumPreviewView"];
+    [self.navigationController pushViewController:previewVC animated:YES];
+}
+
+- (void)didTapSelectedImage:(AssetModel *)model {
+
+    model.selected = !model.selected;
+    [self.collectionView reloadData];
 }
 
 #pragma mark - AlbumManagerDelegate

@@ -33,6 +33,8 @@
 - (void)loadAlbums;
 - (void)loadThumbnailListWithAssetCollectionModel:(AssetCollectionModel *)model;
 
++ (UIImage *)getImageWithAsset:(PHAsset *)asset size:(CGSize)size;
+
 #pragma mark - Privacy Setting
 + (BOOL)isPhotoLibraryAccessNotDetermined;  // 未選択か
 @end

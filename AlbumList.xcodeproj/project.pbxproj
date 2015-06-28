@@ -27,6 +27,8 @@
 		CC3F0D551B37018900EBAEC0 /* AlbumThumbnailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC3F0D4B1B37018900EBAEC0 /* AlbumThumbnailView.storyboard */; };
 		CC3F0D561B37018900EBAEC0 /* AlbumThumbnailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC3F0D4D1B37018900EBAEC0 /* AlbumThumbnailViewController.m */; };
 		CC3F0D581B37033200EBAEC0 /* AlbumListView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC3F0D571B37033200EBAEC0 /* AlbumListView.storyboard */; };
+		CCCCBF101B3FFC5E000A04E0 /* AlbumPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CCCCBF0F1B3FFC5E000A04E0 /* AlbumPreviewViewController.m */; };
+		CCCCBF121B3FFE8B000A04E0 /* AlbumPreviewView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CCCCBF111B3FFE8B000A04E0 /* AlbumPreviewView.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +77,9 @@
 		CC3F0D4C1B37018900EBAEC0 /* AlbumThumbnailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumThumbnailViewController.h; sourceTree = "<group>"; };
 		CC3F0D4D1B37018900EBAEC0 /* AlbumThumbnailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumThumbnailViewController.m; sourceTree = "<group>"; };
 		CC3F0D571B37033200EBAEC0 /* AlbumListView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AlbumListView.storyboard; sourceTree = "<group>"; };
+		CCCCBF0E1B3FFC5E000A04E0 /* AlbumPreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlbumPreviewViewController.h; path = Preview/AlbumPreviewViewController.h; sourceTree = "<group>"; };
+		CCCCBF0F1B3FFC5E000A04E0 /* AlbumPreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AlbumPreviewViewController.m; path = Preview/AlbumPreviewViewController.m; sourceTree = "<group>"; };
+		CCCCBF111B3FFE8B000A04E0 /* AlbumPreviewView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = AlbumPreviewView.storyboard; path = Preview/AlbumPreviewView.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +186,7 @@
 		CC3F0D3E1B37018900EBAEC0 /* Album */ = {
 			isa = PBXGroup;
 			children = (
+				CCCCBF0D1B3FFC28000A04E0 /* Preview */,
 				CC3F0D441B37018900EBAEC0 /* Thumbnail */,
 				CC3F0D411B37018900EBAEC0 /* AlbumListTableViewCell.xib */,
 				CC3F0D3F1B37018900EBAEC0 /* AlbumListTableViewCell.h */,
@@ -206,6 +212,16 @@
 				CC3F0D4D1B37018900EBAEC0 /* AlbumThumbnailViewController.m */,
 			);
 			path = Thumbnail;
+			sourceTree = "<group>";
+		};
+		CCCCBF0D1B3FFC28000A04E0 /* Preview */ = {
+			isa = PBXGroup;
+			children = (
+				CCCCBF0E1B3FFC5E000A04E0 /* AlbumPreviewViewController.h */,
+				CCCCBF0F1B3FFC5E000A04E0 /* AlbumPreviewViewController.m */,
+				CCCCBF111B3FFE8B000A04E0 /* AlbumPreviewView.storyboard */,
+			);
+			name = Preview;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -293,6 +309,7 @@
 				CC3F0CFC1B357FF300EBAEC0 /* Main.storyboard in Resources */,
 				CC3F0D011B357FF300EBAEC0 /* LaunchScreen.xib in Resources */,
 				CC3F0D511B37018900EBAEC0 /* AlbumGroupedThumbnailView.storyboard in Resources */,
+				CCCCBF121B3FFE8B000A04E0 /* AlbumPreviewView.storyboard in Resources */,
 				CC3F0D541B37018900EBAEC0 /* AlbumThumbnailCollectionViewCell.xib in Resources */,
 				CC3F0CFE1B357FF300EBAEC0 /* Images.xcassets in Resources */,
 				CC3F0D4F1B37018900EBAEC0 /* AlbumListTableViewCell.xib in Resources */,
@@ -315,6 +332,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CC3F0D501B37018900EBAEC0 /* AlbumListViewController.m in Sources */,
+				CCCCBF101B3FFC5E000A04E0 /* AlbumPreviewViewController.m in Sources */,
 				CC3F0D531B37018900EBAEC0 /* AlbumThumbnailCollectionViewCell.m in Sources */,
 				CC3F0CF91B357FF300EBAEC0 /* ViewController.m in Sources */,
 				CC3F0CF61B357FF300EBAEC0 /* AppDelegate.m in Sources */,
@@ -521,6 +539,7 @@
 				CC3F0D121B357FF300EBAEC0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CC3F0D131B357FF300EBAEC0 /* Build configuration list for PBXNativeTarget "AlbumListTests" */ = {
 			isa = XCConfigurationList;
@@ -529,6 +548,7 @@
 				CC3F0D151B357FF300EBAEC0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

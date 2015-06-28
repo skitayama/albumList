@@ -187,8 +187,6 @@ static NSString * const ThumbnailCellIdentifier = @"AlbumThumbnailCollectionView
 
     AssetModel *model = [self.albumManager.thumbnailList objectAtIndex:indexPath.row];
     model.selected = !model.selected;
-    AlbumThumbnailCollectionViewCell *cell = (AlbumThumbnailCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    [cell setSelectedImage:model.selected];
     [self reloadCollectionView];
 }
 

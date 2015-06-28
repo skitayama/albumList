@@ -63,8 +63,26 @@ static AlbumManager *_instance;
     self.thumbnailList = [NSMutableArray array];
 }
 
+#pragma mark - getter
+
+- (NSMutableArray *)selectedThumbnailList {
+    
+    NSMutableArray *selectedThumbnailList = [NSMutableArray array];
+    if (!self.thumbnailList) {
+        return selectedThumbnailList;
+    } else {
+        for (AssetModel *assetModel in self.thumbnailList) {
+            if (assetModel.selected) {
+                [selectedThumbnailList addObject:assetModel];
+            }
+        }
+        return selectedThumbnailList;
+    }
+}
+
 #pragma mark - Album Manager
 
+// アルバム(PHAssetCollection)ロード
 - (void)loadAlbums {
 
     dispatch_async(dispatch_get_main_queue(),^{
@@ -79,6 +97,12 @@ static AlbumManager *_instance;
 
         AssetCollectionModel *model = [self addAssetCollectionModelObjectWithPHAssetCollection:(PHAssetCollection *)cameraRoll.firstObject];
         [self.albumList addObject:model];
+        
+        // モーメント
+//        PHFetchResult *moments = [PHAssetCollection fetchMomentsWithOptions:nil];
+//        for (PHAssetCollection *moment in moments) {
+//            NSLog(@"%@",moment);
+//        }
 
         // ユーザーアルバム
         PHFetchResult *userAlbums = [PHCollection fetchTopLevelUserCollectionsWithOptions:nil];
@@ -95,15 +119,14 @@ static AlbumManager *_instance;
 
 - (AssetCollectionModel *)addAssetCollectionModelObjectWithPHAssetCollection:(PHAssetCollection *)assetCollection {
 
-    CGSize thumbnailSize = CGSizeMake(THUMBNAIL_SIZE, THUMBNAIL_SIZE);
-
     PHFetchResult *assets = [PHAsset fetchAssetsInAssetCollection:assetCollection options:nil];
     AssetCollectionModel *model = [[AssetCollectionModel alloc] init];
     model.assetCollection = assetCollection;
-    model.thumbnailImage = [self thumbnailImageWithAsset:assets.lastObject size:thumbnailSize];;
+    model.thumbnailImage = [self thumbnailImageWithAsset:assets.lastObject];
     return model;
 }
 
+// サムネイル(PHAsset)ロード
 - (void)loadThumbnailListWithAssetCollectionModel:(AssetCollectionModel *)model {
 
     dispatch_async(dispatch_get_main_queue(),^{
@@ -133,17 +156,22 @@ static AlbumManager *_instance;
 
 - (AssetModel *)addAssetModelObjectWithPHAssetCollection:(PHAsset *)asset {
 
-    CGSize thumbnailSize = CGSizeMake(THUMBNAIL_SIZE, THUMBNAIL_SIZE);
-
     AssetModel *model = [[AssetModel alloc] init];
     model.asset = asset;
-    model.thumbnailImage = [self thumbnailImageWithAsset:asset size:thumbnailSize];
+    model.thumbnailImage = [self thumbnailImageWithAsset:asset];
     model.selected = NO;
     return model;
 }
 
 // サムネイル画像の取得
-- (UIImage *)thumbnailImageWithAsset:(PHAsset *)asset size:(CGSize)size {
+- (UIImage *)thumbnailImageWithAsset:(PHAsset *)asset {
+
+    CGSize thumbnailSize = CGSizeMake(THUMBNAIL_SIZE, THUMBNAIL_SIZE);
+    return [AlbumManager getImageWithAsset:asset size:thumbnailSize];
+}
+
+// 指定サイズでのUIImage取得
++ (UIImage *)getImageWithAsset:(PHAsset *)asset size:(CGSize)size {
 
     __block UIImage *image = nil;
     PHImageRequestOptions *thumbnailOptions = [[PHImageRequestOptions alloc] init];
@@ -159,20 +187,6 @@ static AlbumManager *_instance;
     return image;
 }
 
-- (NSMutableArray *)selectedThumbnailList {
-
-    NSMutableArray *selectedThumbnailList = [NSMutableArray array];
-    if (!self.thumbnailList) {
-        return selectedThumbnailList;
-    } else {
-        for (AssetModel *assetModel in self.thumbnailList) {
-            if (assetModel.selected) {
-                [selectedThumbnailList addObject:assetModel];
-            }
-        }
-        return selectedThumbnailList;
-    }
-}
 
 #pragma mark - PHPhotoLibraryChangeObserver
 
