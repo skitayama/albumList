@@ -17,7 +17,6 @@
 @property (nonatomic, assign) id<AlbumThumbnailCollectionViewCellDelegate> delegate;
 
 - (void)setAssetModel:(AssetModel *)model;
-
 - (void)setSelectedImage:(BOOL)selected;
 
 @end

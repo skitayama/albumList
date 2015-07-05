@@ -29,6 +29,11 @@
 		CC3F0D581B37033200EBAEC0 /* AlbumListView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC3F0D571B37033200EBAEC0 /* AlbumListView.storyboard */; };
 		CCCCBF101B3FFC5E000A04E0 /* AlbumPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CCCCBF0F1B3FFC5E000A04E0 /* AlbumPreviewViewController.m */; };
 		CCCCBF121B3FFE8B000A04E0 /* AlbumPreviewView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CCCCBF111B3FFE8B000A04E0 /* AlbumPreviewView.storyboard */; };
+		CCCCBF1A1B48D7FA000A04E0 /* AlbumListTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = CCCCBF191B48D7FA000A04E0 /* AlbumListTabBarController.m */; };
+		CCCCBF1F1B48F9E4000A04E0 /* AlbumListMomentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CCCCBF1E1B48F9E4000A04E0 /* AlbumListMomentViewController.m */; };
+		CCCCBF211B490205000A04E0 /* AlbumListMomentView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CCCCBF201B490205000A04E0 /* AlbumListMomentView.storyboard */; };
+		CCCCBF241B490E04000A04E0 /* AssetMomentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CCCCBF231B490E04000A04E0 /* AssetMomentModel.m */; };
+		CCCCBF271B492217000A04E0 /* AlbumMomentHeaderCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = CCCCBF261B492217000A04E0 /* AlbumMomentHeaderCollectionReusableView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,7 +66,6 @@
 		CC3F0D261B35A04800EBAEC0 /* AssetCollectionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AssetCollectionModel.m; path = Manager/AssetCollectionModel.m; sourceTree = "<group>"; };
 		CC3F0D321B36BFC900EBAEC0 /* AssetModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AssetModel.h; path = Manager/AssetModel.h; sourceTree = "<group>"; };
 		CC3F0D331B36BFC900EBAEC0 /* AssetModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AssetModel.m; path = Manager/AssetModel.m; sourceTree = "<group>"; };
-		CC3F0D361B36C70D00EBAEC0 /* SCAlbumThumbnailMode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SCAlbumThumbnailMode.h; path = SCApp/SCAlbumThumbnailMode.h; sourceTree = "<group>"; };
 		CC3F0D3F1B37018900EBAEC0 /* AlbumListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumListTableViewCell.h; sourceTree = "<group>"; };
 		CC3F0D401B37018900EBAEC0 /* AlbumListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumListTableViewCell.m; sourceTree = "<group>"; };
 		CC3F0D411B37018900EBAEC0 /* AlbumListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlbumListTableViewCell.xib; sourceTree = "<group>"; };
@@ -80,6 +84,15 @@
 		CCCCBF0E1B3FFC5E000A04E0 /* AlbumPreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlbumPreviewViewController.h; path = Preview/AlbumPreviewViewController.h; sourceTree = "<group>"; };
 		CCCCBF0F1B3FFC5E000A04E0 /* AlbumPreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AlbumPreviewViewController.m; path = Preview/AlbumPreviewViewController.m; sourceTree = "<group>"; };
 		CCCCBF111B3FFE8B000A04E0 /* AlbumPreviewView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = AlbumPreviewView.storyboard; path = Preview/AlbumPreviewView.storyboard; sourceTree = "<group>"; };
+		CCCCBF181B48D7FA000A04E0 /* AlbumListTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumListTabBarController.h; sourceTree = "<group>"; };
+		CCCCBF191B48D7FA000A04E0 /* AlbumListTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumListTabBarController.m; sourceTree = "<group>"; };
+		CCCCBF1D1B48F9E4000A04E0 /* AlbumListMomentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumListMomentViewController.h; sourceTree = "<group>"; };
+		CCCCBF1E1B48F9E4000A04E0 /* AlbumListMomentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumListMomentViewController.m; sourceTree = "<group>"; };
+		CCCCBF201B490205000A04E0 /* AlbumListMomentView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AlbumListMomentView.storyboard; sourceTree = "<group>"; };
+		CCCCBF221B490E04000A04E0 /* AssetMomentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AssetMomentModel.h; path = Manager/AssetMomentModel.h; sourceTree = "<group>"; };
+		CCCCBF231B490E04000A04E0 /* AssetMomentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AssetMomentModel.m; path = Manager/AssetMomentModel.m; sourceTree = "<group>"; };
+		CCCCBF251B492217000A04E0 /* AlbumMomentHeaderCollectionReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumMomentHeaderCollectionReusableView.h; sourceTree = "<group>"; };
+		CCCCBF261B492217000A04E0 /* AlbumMomentHeaderCollectionReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumMomentHeaderCollectionReusableView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,7 +134,6 @@
 		CC3F0CEF1B357FF300EBAEC0 /* AlbumList */ = {
 			isa = PBXGroup;
 			children = (
-				CC3F0D351B36C6CE00EBAEC0 /* SCApp */,
 				CC3F0D1C1B3584EE00EBAEC0 /* Manager */,
 				CC3F0D3E1B37018900EBAEC0 /* Album */,
 				CC3F0CF41B357FF300EBAEC0 /* AppDelegate.h */,
@@ -171,16 +183,10 @@
 				CC3F0D261B35A04800EBAEC0 /* AssetCollectionModel.m */,
 				CC3F0D321B36BFC900EBAEC0 /* AssetModel.h */,
 				CC3F0D331B36BFC900EBAEC0 /* AssetModel.m */,
+				CCCCBF221B490E04000A04E0 /* AssetMomentModel.h */,
+				CCCCBF231B490E04000A04E0 /* AssetMomentModel.m */,
 			);
 			name = Manager;
-			sourceTree = "<group>";
-		};
-		CC3F0D351B36C6CE00EBAEC0 /* SCApp */ = {
-			isa = PBXGroup;
-			children = (
-				CC3F0D361B36C70D00EBAEC0 /* SCAlbumThumbnailMode.h */,
-			);
-			name = SCApp;
 			sourceTree = "<group>";
 		};
 		CC3F0D3E1B37018900EBAEC0 /* Album */ = {
@@ -194,6 +200,13 @@
 				CC3F0D571B37033200EBAEC0 /* AlbumListView.storyboard */,
 				CC3F0D421B37018900EBAEC0 /* AlbumListViewController.h */,
 				CC3F0D431B37018900EBAEC0 /* AlbumListViewController.m */,
+				CCCCBF251B492217000A04E0 /* AlbumMomentHeaderCollectionReusableView.h */,
+				CCCCBF261B492217000A04E0 /* AlbumMomentHeaderCollectionReusableView.m */,
+				CCCCBF1D1B48F9E4000A04E0 /* AlbumListMomentViewController.h */,
+				CCCCBF1E1B48F9E4000A04E0 /* AlbumListMomentViewController.m */,
+				CCCCBF201B490205000A04E0 /* AlbumListMomentView.storyboard */,
+				CCCCBF181B48D7FA000A04E0 /* AlbumListTabBarController.h */,
+				CCCCBF191B48D7FA000A04E0 /* AlbumListTabBarController.m */,
 			);
 			path = Album;
 			sourceTree = "<group>";
@@ -314,6 +327,7 @@
 				CC3F0CFE1B357FF300EBAEC0 /* Images.xcassets in Resources */,
 				CC3F0D4F1B37018900EBAEC0 /* AlbumListTableViewCell.xib in Resources */,
 				CC3F0D581B37033200EBAEC0 /* AlbumListView.storyboard in Resources */,
+				CCCCBF211B490205000A04E0 /* AlbumListMomentView.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -331,16 +345,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCCCBF241B490E04000A04E0 /* AssetMomentModel.m in Sources */,
+				CCCCBF1F1B48F9E4000A04E0 /* AlbumListMomentViewController.m in Sources */,
 				CC3F0D501B37018900EBAEC0 /* AlbumListViewController.m in Sources */,
 				CCCCBF101B3FFC5E000A04E0 /* AlbumPreviewViewController.m in Sources */,
 				CC3F0D531B37018900EBAEC0 /* AlbumThumbnailCollectionViewCell.m in Sources */,
 				CC3F0CF91B357FF300EBAEC0 /* ViewController.m in Sources */,
 				CC3F0CF61B357FF300EBAEC0 /* AppDelegate.m in Sources */,
 				CC3F0D521B37018900EBAEC0 /* AlbumGroupedThumbnailViewController.m in Sources */,
+				CCCCBF271B492217000A04E0 /* AlbumMomentHeaderCollectionReusableView.m in Sources */,
 				CC3F0D4E1B37018900EBAEC0 /* AlbumListTableViewCell.m in Sources */,
 				CC3F0D561B37018900EBAEC0 /* AlbumThumbnailViewController.m in Sources */,
 				CC3F0CF31B357FF300EBAEC0 /* main.m in Sources */,
 				CC3F0D341B36BFC900EBAEC0 /* AssetModel.m in Sources */,
+				CCCCBF1A1B48D7FA000A04E0 /* AlbumListTabBarController.m in Sources */,
 				CC3F0D271B35A04800EBAEC0 /* AssetCollectionModel.m in Sources */,
 				CC3F0D1F1B35851900EBAEC0 /* AlbumManager.m in Sources */,
 			);

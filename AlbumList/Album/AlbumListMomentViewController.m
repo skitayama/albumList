@@ -1,22 +1,22 @@
 //
-//  AlbumThumbnailViewController.m
+//  AlbumListMomentViewController.m
 //
 
-#import "AlbumThumbnailViewController.h"
+#import "AlbumListMomentViewController.h"
 #import "AlbumThumbnailCollectionViewCell.h"
+#import "AlbumMomentHeaderCollectionReusableView.h"
 #import "AlbumGroupedThumbnailViewController.h"
 
-@interface AlbumThumbnailViewController ()
+@interface AlbumListMomentViewController ()
 
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
-@property (nonatomic, weak) IBOutlet UIToolbar *albumToolBar;
 @property AlbumManager *albumManager;
 
 @end
 
 static NSString * const ThumbnailCellIdentifier = @"AlbumThumbnailCollectionViewCell";
 
-@implementation AlbumThumbnailViewController
+@implementation AlbumListMomentViewController
 
 #pragma mark - Lifecycle method
 
@@ -30,8 +30,8 @@ static NSString * const ThumbnailCellIdentifier = @"AlbumThumbnailCollectionView
 - (void)viewWillAppear:(BOOL)animated {
 
     [super viewWillAppear:animated];
-    [self reloadCollectionView];
     [self settingAlbumManager];
+    [self reloadCollectionView];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -61,7 +61,6 @@ static NSString * const ThumbnailCellIdentifier = @"AlbumThumbnailCollectionView
 
     [self initCollectionView];
     [self setupNavigationItem];
-    [self setupAlbumToolBar];
 }
 
 - (void)settingAlbumManager {
@@ -69,9 +68,7 @@ static NSString * const ThumbnailCellIdentifier = @"AlbumThumbnailCollectionView
     if (!self.albumManager) {
         self.albumManager = [AlbumManager sharedInstance];
         self.albumManager.delegate = self;
-        // nilは全イメージ取得モード
-        [self.albumManager loadThumbnailListWithAssetCollectionModel:_selectedModel];
-        [self reloadCollectionView];
+        [self.albumManager loadMoments];
     }
 }
 
@@ -83,17 +80,8 @@ static NSString * const ThumbnailCellIdentifier = @"AlbumThumbnailCollectionView
                                               action:@selector(onDoneButton)];
 }
 
-- (void)setupAlbumToolBar {
-
-    UIBarButtonItem *allSelectButton = [[UIBarButtonItem alloc] initWithTitle:@"全選択"
-                                                                        style:UIBarButtonItemStylePlain
-                                                                       target:self
-                                                                       action:@selector(onAllSelectButton)];
-    [self.albumToolBar setItems:[NSArray arrayWithObjects:allSelectButton, nil]];
-}
-
 - (void)initData {
-    
+
     // init Data
 }
 
@@ -103,6 +91,9 @@ static NSString * const ThumbnailCellIdentifier = @"AlbumThumbnailCollectionView
     self.collectionView.delegate = self;
     UINib *nib = [UINib nibWithNibName:ThumbnailCellIdentifier bundle:nil];
     [self.collectionView registerNib:nib forCellWithReuseIdentifier:ThumbnailCellIdentifier];
+    [self.collectionView registerClass:[AlbumMomentHeaderCollectionReusableView class]
+            forSupplementaryViewOfKind:UICollectionElementKindSectionHeader
+                   withReuseIdentifier:@"header"];
 }
 
 #pragma mark - Handling NavigationBar Buttons
@@ -110,23 +101,10 @@ static NSString * const ThumbnailCellIdentifier = @"AlbumThumbnailCollectionView
 - (void)setEnableDoneButton {
 
     BOOL enable = YES;
-    if ([self.albumManager.selectedThumbnailList count] == 0) {
+    if ([self.albumManager.selectedMomentThumbnailList count] == 0) {
         enable = NO;
     }
     [self.navigationItem.rightBarButtonItem setEnabled:enable];
-}
-
-- (void)setEnableAllSelectButton {
-
-    BOOL enable = YES;
-    if ([self.albumManager.selectedThumbnailList count] == [self.albumManager.thumbnailList count]) {
-        enable = NO;
-    }
-
-    // 今はツールバーに1個しかないので、一括でDisableにする。
-    for(UIBarButtonItem *button in [self.albumToolBar items]) {
-        [button setEnabled:enable];
-    }
 }
 
 #pragma mark - action
@@ -135,16 +113,8 @@ static NSString * const ThumbnailCellIdentifier = @"AlbumThumbnailCollectionView
 
     UIStoryboard *thumbnailSB = [UIStoryboard storyboardWithName:@"AlbumGroupedThumbnailView" bundle:[NSBundle mainBundle]];
     AlbumGroupedThumbnailViewController *thumbnailVC = (AlbumGroupedThumbnailViewController *)[thumbnailSB instantiateViewControllerWithIdentifier:@"AlbumGroupedThumbnailView"];
-    thumbnailVC.isMoment = NO;
+    thumbnailVC.isMoment = YES;
     [self.navigationController pushViewController:thumbnailVC animated:YES];
-}
-
-- (void)onAllSelectButton {
-
-    for (AssetModel *model in self.albumManager.thumbnailList) {
-        model.selected = YES;
-    }
-    [self reloadCollectionView];
 }
 
 #pragma mark - UICollectionView Reload
@@ -153,7 +123,6 @@ static NSString * const ThumbnailCellIdentifier = @"AlbumThumbnailCollectionView
 
     [self.collectionView reloadData];
     [self setEnableDoneButton];
-    [self setEnableAllSelectButton];
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -161,7 +130,11 @@ static NSString * const ThumbnailCellIdentifier = @"AlbumThumbnailCollectionView
 // セクション数
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
 
-    return 1;
+    NSInteger count = 1;
+    if (self.albumManager) {
+        count = [self.albumManager.momentList count];
+    }
+    return count;
 }
 
 // セクション内セル数
@@ -169,7 +142,8 @@ static NSString * const ThumbnailCellIdentifier = @"AlbumThumbnailCollectionView
 
     NSInteger count = 0;
     if (self.albumManager) {
-        count = [self.albumManager.thumbnailList count];
+        AssetMomentModel *model = [self.albumManager.momentList objectAtIndex:section];
+        count = [model.assetModelList count];
     }
     return count;
 }
@@ -179,16 +153,32 @@ static NSString * const ThumbnailCellIdentifier = @"AlbumThumbnailCollectionView
 
     AlbumThumbnailCollectionViewCell *cell =[collectionView dequeueReusableCellWithReuseIdentifier:ThumbnailCellIdentifier
                                                                                       forIndexPath:indexPath];
-    AssetModel *model = [self.albumManager.thumbnailList objectAtIndex:indexPath.row];
+    AssetMomentModel *momentModel = [self.albumManager.momentList objectAtIndex:indexPath.section];
+    AssetModel *model = [momentModel.assetModelList objectAtIndex:indexPath.row];
     [cell setAssetModel:model];
     return cell;
+}
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+
+    if (kind == UICollectionElementKindSectionHeader) {
+        AlbumMomentHeaderCollectionReusableView *headerView = (AlbumMomentHeaderCollectionReusableView *)[collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header" forIndexPath:indexPath];
+
+        AssetMomentModel *momentModel = [self.albumManager.momentList objectAtIndex:indexPath.section];
+        [headerView.titleLabel setText:[AlbumManager convertedDateStringWithDate:momentModel.date]];
+
+        return headerView;
+    } else {
+        return nil;
+    }
 }
 
 #pragma mark - UICollectionViewDelegate
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
-    AssetModel *model = [self.albumManager.thumbnailList objectAtIndex:indexPath.row];
+    AssetMomentModel *momentModel = [self.albumManager.momentList objectAtIndex:indexPath.section];
+    AssetModel *model = [momentModel.assetModelList objectAtIndex:indexPath.row];
     model.selected = !model.selected;
     [self reloadCollectionView];
 }
@@ -196,7 +186,7 @@ static NSString * const ThumbnailCellIdentifier = @"AlbumThumbnailCollectionView
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
 
     // セルサイズを正方形x4に変更
-    float size = (self.collectionView.frame.size.width/4.0f) - 2.0f;
+    float size = (self.collectionView.frame.size.width/4.0f) - 3.0f;
     return CGSizeMake(size, size);
 }
 
@@ -209,7 +199,7 @@ static NSString * const ThumbnailCellIdentifier = @"AlbumThumbnailCollectionView
 }
 
 // ロード完了通知
-- (void)didFinishLoadingThumbnailList {
+- (void)didFinishLoadingMomentList {
 
     [self reloadCollectionView];
 }

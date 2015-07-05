@@ -9,6 +9,7 @@
 @interface AlbumGroupedThumbnailViewController ()
 
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
+@property (nonatomic) NSMutableArray *selectList;
 @property AlbumManager *albumManager;
 
 @end
@@ -20,48 +21,48 @@ static NSString * const GroupedThumbnailCellIdentifier = @"AlbumThumbnailCollect
 #pragma mark - Lifecycle method
 
 - (void)viewDidLoad {
-    
+
     [super viewDidLoad];
     // self init
     [self initView];
-    [self settingAlbumManager];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    
+
     [super viewWillAppear:animated];
+    [self settingAlbumManager];
 }
 
 - (void)viewDidLayoutSubviews {
-    
+
     [super viewDidLayoutSubviews];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    
+
     [super viewDidAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning {
-    
+
     [super didReceiveMemoryWarning];
 }
 
 #pragma mark - initialize
 
 - (void)initView {
-    
+
     [self initUI];
     [self initData];
 }
 
 - (void)initUI {
-    
+
     [self initCollectionView];
 }
 
 - (void)settingAlbumManager {
-    
+
     if (!self.albumManager) {
         self.albumManager = [AlbumManager sharedInstance];
         self.albumManager.delegate = self;
@@ -69,24 +70,34 @@ static NSString * const GroupedThumbnailCellIdentifier = @"AlbumThumbnailCollect
 }
 
 - (void)initData {
-    
+
     // init Data
 }
 
 - (void)initCollectionView {
-    
-    // initCollectionView
+
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
     UINib *nib = [UINib nibWithNibName:GroupedThumbnailCellIdentifier bundle:nil];
     [self.collectionView registerNib:nib forCellWithReuseIdentifier:GroupedThumbnailCellIdentifier];
 }
 
+#pragma mark - getter
+
+- (NSMutableArray *)selectList {
+
+    if (self.isMoment) {
+        return self.albumManager.selectedMomentThumbnailList;
+    } else {
+        return self.albumManager.selectedThumbnailList;
+    }
+}
+
 #pragma mark - UICollectionViewDataSource
 
 // セクション数
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    
+
     return 1;
 }
 
@@ -95,17 +106,17 @@ static NSString * const GroupedThumbnailCellIdentifier = @"AlbumThumbnailCollect
 
     NSInteger count = 0;
     if (self.albumManager) {
-        count = [self.albumManager.selectedThumbnailList count];
+        count = [self.selectList count];
     }
     return count;
 }
 
 // セル
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
+
     AlbumThumbnailCollectionViewCell *cell =[collectionView dequeueReusableCellWithReuseIdentifier:GroupedThumbnailCellIdentifier forIndexPath:indexPath];
     cell.delegate = self;
-    AssetModel *model = [self.albumManager.selectedThumbnailList objectAtIndex:indexPath.row];
+    AssetModel *model = [self.selectList objectAtIndex:indexPath.row];
     [cell setAssetModel:model];
     return cell;
 }
@@ -113,12 +124,12 @@ static NSString * const GroupedThumbnailCellIdentifier = @"AlbumThumbnailCollect
 #pragma mark - UICollectionViewDelegate
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    
-    //
+
+    // 特に何もしない。
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    
+
     // セルサイズを正方形x4に変更
     float size = self.collectionView.frame.size.width/4;
     return CGSizeMake(size, size);
@@ -130,12 +141,17 @@ static NSString * const GroupedThumbnailCellIdentifier = @"AlbumThumbnailCollect
 
     UIStoryboard *previewSB = [UIStoryboard storyboardWithName:@"AlbumPreviewView" bundle:[NSBundle mainBundle]];
     AlbumPreviewViewController *previewVC = [previewSB instantiateViewControllerWithIdentifier:@"AlbumPreviewView"];
+    previewVC.isMoment = self.isMoment;
     [self.navigationController pushViewController:previewVC animated:YES];
 }
 
 - (void)didTapSelectedImage:(AssetModel *)model {
 
     model.selected = !model.selected;
+    // 選択しているものがなくなればpopする
+    if ([self.selectList count] <= 0) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
     [self.collectionView reloadData];
 }
 

@@ -4,6 +4,7 @@
 //
 
 #import "ViewController.h"
+#import "AlbumListTabBarController.h"
 
 @interface ViewController ()
 
@@ -30,20 +31,8 @@
 - (void)setupTabController {
 
     // アルバム
-    UIStoryboard *albumSB = [UIStoryboard storyboardWithName:@"AlbumListView" bundle:[NSBundle mainBundle]];
-    UIViewController *albumVC = [albumSB instantiateViewControllerWithIdentifier:@"AlbumListView"];
-    UINavigationController *albumNC = [[UINavigationController alloc] initWithRootViewController:albumVC];
-    [self presentViewController:albumNC animated:YES completion:nil];
-}
-
-// タブ用イメージの生成
-- (UIImage *)imageForTabBarWithName:(NSString *)name {
-
-    UIImage* image = [UIImage imageNamed:name];
-    if ([image respondsToSelector:@selector(imageWithRenderingMode:)]) {
-        return [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    }
-    return image;
+    AlbumListTabBarController *albumTC = [[AlbumListTabBarController alloc] init];
+    [self presentViewController:albumTC animated:YES completion:nil];
 }
 
 @end

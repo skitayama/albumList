@@ -13,9 +13,6 @@ static NSString * const AlbumListTableViewCellIdentifier = @"AlbumListTableViewC
 @property (nonatomic, weak) IBOutlet UITableView *albumTableView;
 @property AlbumManager *albumManager;
 
-// for debug
-@property (nonatomic, strong) NSArray *debugDataSource;
-
 @end
 
 @implementation AlbumListViewController
@@ -25,7 +22,6 @@ static NSString * const AlbumListTableViewCellIdentifier = @"AlbumListTableViewC
 - (void)viewDidLoad {
 
     [super viewDidLoad];
-
     // self init
     [self initView];
 }
@@ -33,9 +29,7 @@ static NSString * const AlbumListTableViewCellIdentifier = @"AlbumListTableViewC
 - (void)viewWillAppear:(BOOL)animated {
 
     [super viewWillAppear:animated];
-
-    // プライバシー設定をチェック
-    [self checkPrivacySettingStatus];
+    [self settingAlbumManager];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -49,6 +43,7 @@ static NSString * const AlbumListTableViewCellIdentifier = @"AlbumListTableViewC
 }
 
 - (void)didReceiveMemoryWarning {
+
     [super didReceiveMemoryWarning];
 }
 
@@ -143,74 +138,6 @@ static NSString * const AlbumListTableViewCellIdentifier = @"AlbumListTableViewC
 - (void)didFinishLoadingAlbumList {
 
     [self.albumTableView reloadData];
-}
-
-#pragma mark - Privacy Setting
-
-- (void)checkPrivacySettingStatus {
-
-    if ([AlbumManager isPhotoLibraryAccessNotDetermined]) {
-        // 初回に許可を促すメッセージ
-        [self showAlertPhotoAccessNotDetermined];
-    } else {
-        // 初回でなければ拒否チェック
-        [self checkAuthorizationStatus];
-    }
-}
-
-- (void)checkAuthorizationStatus {
-
-    [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status){
-        switch (status) {
-            case PHAuthorizationStatusAuthorized:       // 許可
-                [self settingAlbumManager];
-                break;
-            case PHAuthorizationStatusDenied:           // 拒否
-                [self showAlertPhotoAccessDenied];
-                break;
-            case PHAuthorizationStatusRestricted:       // 機能制限
-                [self showAlertPhotoAccessRestricted];
-                break;
-            default:
-                break;
-        }
-    }];
-}
-
-- (void)showAlertPhotoAccessNotDetermined {
-
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"PhotoLibraryAccessNotDeterminedTitle"
-                                                                   message:@"PhotoLibraryAccessNotDeterminedMsg"
-                                                            preferredStyle:UIAlertControllerStyleAlert];
-    [alert addAction:[UIAlertAction actionWithTitle:@"OK"
-                                              style:UIAlertActionStyleDefault
-                                            handler:^(UIAlertAction *action) {
-                                                [self checkAuthorizationStatus];
-                                            }]];
-}
-
-- (void)showAlertPhotoAccessDenied {
-
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"PhotoLibraryAccessDeniedTitle"
-                                                                   message:@"PhotoLibraryAccessDeniedMsg"
-                                                            preferredStyle:UIAlertControllerStyleAlert];
-    [alert addAction:[UIAlertAction actionWithTitle:@"openSetting"
-                                              style:UIAlertActionStyleDefault
-                                            handler:^(UIAlertAction *action) {
-                                                  [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
-                                            }]];
-}
-
-- (void)showAlertPhotoAccessRestricted {
-
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"PhotoLibraryAccessRestrictedTitle"
-                                                                   message:@"PhotoLibraryAccessRestrictedMsg"
-                                                            preferredStyle:UIAlertControllerStyleAlert];
-    [alert addAction:[UIAlertAction actionWithTitle:@"openSetting"
-                                              style:UIAlertActionStyleDefault
-                                            handler:^(UIAlertAction *action) {
-                                                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
-                                            }]];
 }
 
 @end

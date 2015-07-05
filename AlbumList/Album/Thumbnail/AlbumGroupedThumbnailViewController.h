@@ -14,4 +14,6 @@
     AlbumManagerDelegate
 >
 
+@property BOOL isMoment;    // モーメントからの遷移か否か
+
 @end

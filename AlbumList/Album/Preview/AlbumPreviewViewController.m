@@ -11,9 +11,9 @@
 
 @interface AlbumPreviewViewController ()
 
-@property(nonatomic,strong) UIScrollView *scrollView;
-@property(nonatomic,strong) UIPageControl *pageControl;
-
+@property (nonatomic,strong) UIScrollView *scrollView;
+@property (nonatomic,strong) UIPageControl *pageControl;
+@property (nonatomic) NSMutableArray *selectList;
 @property AlbumManager *albumManager;
 
 @end
@@ -23,17 +23,18 @@
 #pragma mark - Lifecycle method
 
 - (void)viewDidLoad {
+
     [super viewDidLoad];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    
+
     [super viewWillAppear:animated];
     [self settingAlbumManager];
 }
 
 - (void)viewDidLayoutSubviews {
-    
+
     [super viewDidLayoutSubviews];
 }
 
@@ -44,13 +45,14 @@
 }
 
 - (void)didReceiveMemoryWarning {
+
     [super didReceiveMemoryWarning];
 }
 
 #pragma mark - initialize
 
 - (void)initView {
-    
+
     [self initUI];
     [self initData];
 }
@@ -62,7 +64,7 @@
 }
 
 - (void)settingAlbumManager {
-    
+
     if (!self.albumManager) {
         self.albumManager = [AlbumManager sharedInstance];
         self.albumManager.delegate = self;
@@ -70,8 +72,19 @@
 }
 
 - (void)initData {
-    
+
     // init Data
+}
+
+#pragma mark - getter
+
+- (NSMutableArray *)selectList {
+
+    if (self.isMoment) {
+        return self.albumManager.selectedMomentThumbnailList;
+    } else {
+        return self.albumManager.selectedThumbnailList;
+    }
 }
 
 #pragma mark - setupPageControll
@@ -105,8 +118,8 @@
     for (int i = 0; i < count; i++) {
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(i * width, 0, width, height)];
         [imageView setContentMode:UIViewContentModeScaleAspectFit];
-        AssetModel *model = [self.albumManager.selectedThumbnailList objectAtIndex:i];
-        [imageView setImage:[AlbumManager getImageWithAsset:model.asset size:imageView.bounds.size]];
+        AssetModel *model = [self.selectList objectAtIndex:i];
+        [imageView setImage:[AlbumManager getImageWithAsset:model.asset]];
         [aView addSubview:imageView];
         //[self.scrollView addSubview:imageView];
     }
@@ -136,7 +149,7 @@
 
     NSInteger count = kNumberOfPages;
     if (self.albumManager) {
-        NSInteger selectCount = [self.albumManager.selectedThumbnailList count];
+        NSInteger selectCount = [self.selectList count];
         count = (selectCount < kNumberOfPages) ? selectCount : kNumberOfPages;
     }
     return count;
@@ -161,6 +174,7 @@
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
 
+// テスト用コード
 //    CGFloat pageWidth = self.scrollView.frame.size.width;
 //    for (id view in [self.scrollView subviews]) {
 //        if ([view isKindOfClass:[UIImageView class]]) {

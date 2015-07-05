@@ -36,9 +36,11 @@
 - (void)setSelectedImage:(BOOL)selected {
 
     if (selected) {
+        [self setAlpha:0.8f];
         [self.selectedImageView setImage:[UIImage imageNamed:@"ThumbnailCheck"]];
     } else {
-        [self.selectedImageView setImage:[UIImage imageNamed:@"ThumbnailNoCheck"]];
+        [self setAlpha:1.0f];
+        [self.selectedImageView setImage:nil];
     }
 }
 
