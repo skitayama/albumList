@@ -117,7 +117,7 @@ static NSString * const GroupedThumbnailCellIdentifier = @"AlbumThumbnailCollect
     AlbumThumbnailCollectionViewCell *cell =[collectionView dequeueReusableCellWithReuseIdentifier:GroupedThumbnailCellIdentifier forIndexPath:indexPath];
     cell.delegate = self;
     AssetModel *model = [self.selectList objectAtIndex:indexPath.row];
-    [cell setAssetModel:model];
+    [cell setAssetModel:model mode:ThumbnailCollectionViewCellModeGrouped];
     return cell;
 }
 

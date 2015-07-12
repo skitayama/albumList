@@ -18,14 +18,15 @@
 
 - (void)awakeFromNib {
 
-    [self.selectedImageView setImage:[UIImage imageNamed:@"ThumbnailNoCheck"]];
+    [self.selectedImageView setImage:[UIImage imageNamed:@"ThumbnailCheck"]];
 }
 
-- (void)setAssetModel:(AssetModel *)model {
+- (void)setAssetModel:(AssetModel *)model mode:(ThumbnailCollectionViewCellMode)mode {
 
     [self setModel:model];
     [self.thumbnailImageView setImage:model.thumbnailImage];
-    [self setSelectedImage:model.selected];
+    [self setSelectedImageAlpha:model.selected];
+    [self setSelectedImage:mode];
     if ([self.delegate conformsToProtocol:@protocol(AlbumThumbnailCollectionViewCellDelegate)]) {
         [self createGestureRecognizers];
     }
@@ -33,14 +34,27 @@
 
 #pragma mark - Setter
 
-- (void)setSelectedImage:(BOOL)selected {
+- (void)setSelectedImageAlpha:(BOOL)selected {
 
     if (selected) {
-        [self setAlpha:0.8f];
-        [self.selectedImageView setImage:[UIImage imageNamed:@"ThumbnailCheck"]];
+        [self.selectedImageView setAlpha:1.0f];
     } else {
-        [self setAlpha:1.0f];
-        [self.selectedImageView setImage:nil];
+        [self.selectedImageView setAlpha:0.3f];
+    }
+}
+
+- (void)setSelectedImage:(ThumbnailCollectionViewCellMode)mode {
+
+    switch (mode) {
+        case ThumbnailCollectionViewCellModeNormal:
+            [self.selectedImageView setImage:[UIImage imageNamed:@"ThumbnailCheck"]];
+            break;
+        case ThumbnailCollectionViewCellModeGrouped:
+            [self.selectedImageView setImage:[UIImage imageNamed:@"ThumbnailClear"]];
+            break;
+        default:
+            [self.selectedImageView setImage:nil];
+            break;
     }
 }
 

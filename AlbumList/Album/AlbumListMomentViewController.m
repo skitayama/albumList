@@ -155,7 +155,7 @@ static NSString * const ThumbnailCellIdentifier = @"AlbumThumbnailCollectionView
                                                                                       forIndexPath:indexPath];
     AssetMomentModel *momentModel = [self.albumManager.momentList objectAtIndex:indexPath.section];
     AssetModel *model = [momentModel.assetModelList objectAtIndex:indexPath.row];
-    [cell setAssetModel:model];
+    [cell setAssetModel:model mode:ThumbnailCollectionViewCellModeNormal];
     return cell;
 }
 

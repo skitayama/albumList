@@ -34,6 +34,7 @@
 		CCCCBF211B490205000A04E0 /* AlbumListMomentView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CCCCBF201B490205000A04E0 /* AlbumListMomentView.storyboard */; };
 		CCCCBF241B490E04000A04E0 /* AssetMomentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CCCCBF231B490E04000A04E0 /* AssetMomentModel.m */; };
 		CCCCBF271B492217000A04E0 /* AlbumMomentHeaderCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = CCCCBF261B492217000A04E0 /* AlbumMomentHeaderCollectionReusableView.m */; };
+		CCD5CB221B52ADAA000B11AF /* AppManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CCD5CB211B52ADAA000B11AF /* AppManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +94,8 @@
 		CCCCBF231B490E04000A04E0 /* AssetMomentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AssetMomentModel.m; path = Manager/AssetMomentModel.m; sourceTree = "<group>"; };
 		CCCCBF251B492217000A04E0 /* AlbumMomentHeaderCollectionReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumMomentHeaderCollectionReusableView.h; sourceTree = "<group>"; };
 		CCCCBF261B492217000A04E0 /* AlbumMomentHeaderCollectionReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumMomentHeaderCollectionReusableView.m; sourceTree = "<group>"; };
+		CCD5CB201B52ADAA000B11AF /* AppManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppManager.h; sourceTree = "<group>"; };
+		CCD5CB211B52ADAA000B11AF /* AppManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +147,8 @@
 				CC3F0CFD1B357FF300EBAEC0 /* Images.xcassets */,
 				CC3F0CFF1B357FF300EBAEC0 /* LaunchScreen.xib */,
 				CC3F0CF01B357FF300EBAEC0 /* Supporting Files */,
+				CCD5CB201B52ADAA000B11AF /* AppManager.h */,
+				CCD5CB211B52ADAA000B11AF /* AppManager.m */,
 			);
 			path = AlbumList;
 			sourceTree = "<group>";
@@ -360,6 +365,7 @@
 				CC3F0D341B36BFC900EBAEC0 /* AssetModel.m in Sources */,
 				CCCCBF1A1B48D7FA000A04E0 /* AlbumListTabBarController.m in Sources */,
 				CC3F0D271B35A04800EBAEC0 /* AssetCollectionModel.m in Sources */,
+				CCD5CB221B52ADAA000B11AF /* AppManager.m in Sources */,
 				CC3F0D1F1B35851900EBAEC0 /* AlbumManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

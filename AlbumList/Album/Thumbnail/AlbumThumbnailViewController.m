@@ -180,7 +180,7 @@ static NSString * const ThumbnailCellIdentifier = @"AlbumThumbnailCollectionView
     AlbumThumbnailCollectionViewCell *cell =[collectionView dequeueReusableCellWithReuseIdentifier:ThumbnailCellIdentifier
                                                                                       forIndexPath:indexPath];
     AssetModel *model = [self.albumManager.thumbnailList objectAtIndex:indexPath.row];
-    [cell setAssetModel:model];
+    [cell setAssetModel:model mode:ThumbnailCollectionViewCellModeNormal];
     return cell;
 }
 
